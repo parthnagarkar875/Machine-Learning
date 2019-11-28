@@ -91,7 +91,8 @@ print("R-Squared error is: ",r)
 
 
 # =============================================================================
-# In the code below, I have used the sklearn library to predict the values. 
+# In the code below, I have used the sklearn library to predict the values. The r-squared value of hardcoded
+# prediction and the prediction made by the libraries' method is the same. 
 # =============================================================================
 x_train,x_test,Y_train,Y_test=train_test_split(x,y,test_size=0.3)
 regressor=LinearRegression()
@@ -110,3 +111,6 @@ plt.ylabel('Salary')
 plt.show()
 
 print("R-Squared error is: ",r2_score(y_test,pred_values))
+
+
+
