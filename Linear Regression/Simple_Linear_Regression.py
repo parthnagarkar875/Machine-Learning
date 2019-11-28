@@ -10,11 +10,24 @@ Concept:
 The equation of simple linear regression is: y=mx+c
 Linear Regression assumes a linear relationship between a the variables 'x' and a single variable 'y'.
 
-The regression line is plotted and the equation of the line is y=W0+W1x,
-where W0 and W1 are the parameters of the model and x is the input parameter given to the model. 
+The regression line is plotted and the equation of the line is y=B0+B1x,
+where B0 and B1 are the parameters of the model and x is the input parameter given to the model. 
 Then the value of y is calculated. 
 
 
+The catch lies in determining the values of the parameters of the model: c and m (B0 and B1).
+
+To determine the values, we use the following formula:
+B1= (x'.y'-(xy)')/((x'.x')-(x.x)')
+B0= y'-B1.x'
+
+
+Where, x' and y' indicate the mean values of x and y respectively. 
+
+After determining the values of B0 and B1, we just need to subsitute the input value of X in the equation.
+
+
+Any prediction
 '''
 
 
@@ -57,11 +70,17 @@ plt.title('Salary vs Experience (Full set)')
 plt.xlabel('Years of Experience')
 plt.ylabel('Salary')
 plt.show()
+ssr=0
+sst=0
+for i in range(len(y_test)):
+    ssr+=(y_test[i]-pred_values[i])**2
+    sst+=(y_test[i]-mean(y_test))**2
+r=1-(ssr/sst)
 
+print(r)
+from sklearn.metrics import r2_score
 
-
-
-
+print(r2_score(y_test,pred_values))
 
 #X_train,X_test,y_train,y_test=train_test_split(x,y,test_size=0.3)
 regressor=LinearRegression()
@@ -86,5 +105,3 @@ plt.xlabel('Years of Experience')
 plt.ylabel('Salary')
 plt.show()
 
-
-'''
