@@ -20,7 +20,8 @@ Multiple Linear Regression.
     Where, 
     X1,X2 are the input features. 
     
---->
+--->In Multiple Linear Regression, we should make sure that the features are correlated with 
+    the dependent variabele and not with each other i.e Multicollinearity must not exist. 
 '''
 from sklearn.metrics import accuracy_score
 
