@@ -22,9 +22,25 @@ Multiple Linear Regression.
     
 --->In Multiple Linear Regression, we should make sure that the features are correlated with 
     the dependent variabele and not with each other i.e Multicollinearity must not exist. 
+    
+--->Concept of Dummy variables:
+    In our dataset, we might be having some features that contain categorical data.
+    Eg: Male/Female, Yes/No or even names of cities like California/Mumbai/Goa/Delhi, etc. 
+    The problem with these kind of variables is, we can't pass the textual data directly as an input to 
+    the classifier, we must quantify it in terms of numerical data first.
+    The way dumy variables work is can be explained with an example below: 
+    |City|             
+    ________ --->    
+    |Goa   |
+    |Pune  |
+    |Delhi |
+    |Mumbai|
+    
+--->Avoiding the Dummy Variable Trap:
+    If there are n categorical variables, we must include n-1 dummy variables in our features. 
+    
 '''
 from sklearn.metrics import accuracy_score
-
 from statistics import mean
 import numpy as np
 import matplotlib.pyplot as plt
@@ -32,14 +48,27 @@ from sklearn.linear_model import LinearRegression
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 
-df=pd.read_csv('headbrain.csv')
-x=df.iloc[:,:-1].values
-y=df.iloc[:,3].values
+df=pd.read_csv('50_startups.csv')
+X=df.iloc[:,:-1].values
+y=df.iloc[:,4].values
 
-X_train, X_test, y_train, y_test= train_test_split(x,y,test_size=0.2)
+labelencoder = LabelEncoder()
+X[:, 3] = labelencoder.fit_transform(X[:, 3])
+onehotencoder = OneHotEncoder(categorical_features = [3])
+X = onehotencoder.fit_transform(X).toarray()
 
+X_train, X_test, y_train, y_test= train_test_split(X,y,test_size=0.2)
 
+'''
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test)
+sc_y = StandardScaler()
+y_train = sc_y.fit_transform(y_train)
+'''
 
 cl=LinearRegression()
 cl.fit(X_train,y_train)
