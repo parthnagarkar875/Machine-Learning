@@ -31,6 +31,13 @@ y=df.iloc[:,2].values
 
 X=X.reshape(-1,1)
 
+# =============================================================================
+# I have commented the feature scaling code and haven't executed it because in Linear 
+# Regression models the feature scaling is done implicitly by the library. But in some uncommon 
+# Regression models like SVR, etc. we need to explicitly scale the features as
+# the features aren't implicitly scaled by the library. 
+# =============================================================================
+
 '''
 from sklearn.preprocessing import StandardScaler
 sc_X = StandardScaler()
