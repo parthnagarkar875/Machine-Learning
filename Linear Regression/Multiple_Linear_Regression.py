@@ -29,12 +29,11 @@ Multiple Linear Regression.
     The problem with these kind of variables is, we can't pass the textual data directly as an input to 
     the classifier, we must quantify it in terms of numerical data first.
     The way dummy variables work is can be explained with an example below: 
-    |City|             
-    ________ --->    
-    |Goa   |
-    |Pune  |
-    |Delhi |
-    |Mumbai|
+    |City|           |Goa|Pune|Delhi|  
+    ________ --->    ________________
+    |Goa   |         | 1 |  0 | 0  |
+    |Pune  |         | 0 |  1 | 0  | 
+    |Delhi |         | 0 |  0 | 1  |
     
 --->Avoiding the Dummy Variable Trap:
     If there are n categorical variables, we must include n-1 dummy variables in our features. 
@@ -97,16 +96,39 @@ r2=1-(ssr/sst)
 
 print("R-Squared error is: ",r2_score(y_test,y_pred))
 
-
+'''
+In the code below, I will only use the features that are heavily correlated with the
+output variable. 
+'''
 #Determining the P-value and performing backward elimination. 
 import statsmodels.api as sm
+'''
+In the equation of Linear regression: y= B0+B1X1+B2X2+BnXn, the sklearn library assume B0 as 
+B0X0 but the statsmodels library doesn't make this assumption implicitly. 
+So we need to assign the value of 1 to X0 i.e we need to append a column of 1's. 
+'''
 X=np.append(arr=np.ones((50,1)),values=X,axis=1)
+#Backward elimination starts here.
 X_opt=X
 regressor=sm.OLS(endog=y,exog=X_opt).fit()
 regressor.summary()
+X_opt=X[:,[0,1,2,3,4,5,7]]
+regressor=sm.OLS(endog=y,exog=X_opt).fit()
+regressor.summary()
 
+X_opt=X[:,[0,1,2,3,4,5]]
+regressor=sm.OLS(endog=y,exog=X_opt).fit()
+regressor.summary()
 
+x1=X_opt[:,1:]
 
+X_train, X_test, y_train, y_test= train_test_split(x1,y,test_size=0.2)
 
+cl=LinearRegression()
+cl.fit(X_train,y_train)
 
+y_pred=cl.predict(X_test)
+
+#We can observe the increase in r2 value, thus the model performs better when only useful features are supplied
+print("R-Squared error is: ",r2_score(y_test,y_pred))
 
