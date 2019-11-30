@@ -4,6 +4,21 @@ Created on Sat Nov 30 20:39:02 2019
 
 @author: Parth
 """
+'''
+--->The regression line in Linear regressionn is a straight line that passes 
+    through the plotted points. It works well in predicting the future points when 
+    the values of the dependent variable change with the changes in the values of the 
+    independent variables. 
+    
+--->But if the plotted points are curved, then fitting a straight line won't be 
+    useful for predicting the values. To overcome this, we use Polynomial Linear 
+    Regression. In Polynomial Linear regression, the equation is of the form:
+    Y=B0+B1X1+B1(X1)^2+B1(X1)^3+....
+    We take the polynomial power of the independent variable so that the regression 
+    line forms a curve.
+'''
+
+
 
 import numpy as np
 import pandas as pd
