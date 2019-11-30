@@ -18,8 +18,6 @@ Created on Sat Nov 30 20:39:02 2019
     line forms a curve.
 '''
 
-
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
