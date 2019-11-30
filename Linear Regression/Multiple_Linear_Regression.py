@@ -28,7 +28,7 @@ Multiple Linear Regression.
     Eg: Male/Female, Yes/No or even names of cities like California/Mumbai/Goa/Delhi, etc. 
     The problem with these kind of variables is, we can't pass the textual data directly as an input to 
     the classifier, we must quantify it in terms of numerical data first.
-    The way dumy variables work is can be explained with an example below: 
+    The way dummy variables work is can be explained with an example below: 
     |City|             
     ________ --->    
     |Goa   |
@@ -39,6 +39,16 @@ Multiple Linear Regression.
 --->Avoiding the Dummy Variable Trap:
     If there are n categorical variables, we must include n-1 dummy variables in our features. 
     
+    
+--->Determining which features to be used: 
+    In Multiple linear regression, we have multiple features. We need to find out which features are highly 
+    correlated with the output variable. 
+    For this, we determine the P-value of the features and set a significance level. 
+    If the P-value is greater than the Significance level, we discard the feature. 
+    If the P-value is smaller than the significance level, it indicates that the feature is strongly 
+    correlated with the output variable. Hence, we include(keep/don't discard) the feature.
+    
+
 '''
 from sklearn.metrics import accuracy_score
 from statistics import mean
@@ -75,9 +85,9 @@ cl.fit(X_train,y_train)
 
 y_pred=cl.predict(X_test)
 
+#calculating the r2 error manually
 ssr=0
 sst=0
-
 for i in range(len(y_test)):
     ssr+=(y_test[i]-y_pred[i])**2
     sst+=(y_test[i]-mean(y_test))**2
@@ -88,8 +98,12 @@ r2=1-(ssr/sst)
 print("R-Squared error is: ",r2_score(y_test,y_pred))
 
 
-
-
+#Determining the P-value and performing backward elimination. 
+import statsmodels.api as sm
+X=np.append(arr=np.ones((50,1)),values=X,axis=1)
+X_opt=X
+regressor=sm.OLS(endog=y,exog=X_opt).fit()
+regressor.summary()
 
 
 
