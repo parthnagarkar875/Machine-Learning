@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Dec  1 01:33:17 2019
+Created on Sun Dec  1 18:22:02 2019
 
 @author: Parth
 """
@@ -47,8 +47,9 @@ X_opt=X_opt[:,1:]
 X_train,X_test, y_train,y_test=train_test_split(X_opt,y,test_size=0.2)
 
 
-from sklearn.svm import SVR
-regressor= SVR(kernel='rbf')
+from sklearn.tree import DecisionTreeRegressor
+regressor= DecisionTreeRegressor(random_state=0)
 regressor.fit(X_train,y_train)
+
 
 print("R-Squared error is: ",r2_score(y_test,regressor.predict(X_test)))
