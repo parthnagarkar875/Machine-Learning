@@ -22,6 +22,37 @@ Random Forrest Regression.
        
 --->Ensemble algorithms are more stable as any changes that might affect a single tree do not affect
     the end outcome as the average of the outcomes of all trees is taken. 
-    
-
 '''
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+from sklearn.preprocessing import PolynomialFeatures
+
+df=pd.read_csv('Position_Salaries.csv')
+X=df.iloc[:,1].values
+y=df.iloc[:,2].values
+
+X=X.reshape(-1,1)
+y=y.reshape(-1,1)
+
+
+from sklearn.ensemble import RandomForestRegressor
+regressor= RandomForestRegressor(n_estimators=300, random_state=0)
+regressor.fit(X,y)
+
+
+y_pred=regressor.predict(np.array([[6.5]]))
+
+X_grid = np.arange(min(X), max(X), 0.1)
+X_grid = X_grid.reshape((len(X_grid), 1))
+plt.scatter(X, y, color = 'red')
+plt.plot(X_grid, regressor.predict(X_grid), color = 'blue')
+plt.title('Truth or Bluff (Regression Model)')
+plt.xlabel('Position level')
+plt.ylabel('Salary')
+plt.show()
+
+print("r2 score:",r2_score(y,regressor.predict(X)))
