@@ -32,12 +32,19 @@ X_opt=X
 regressor=sm.OLS(endog=y,exog=X_opt).fit()
 regressor.summary()
 
-X_opt=X[:,[0,1,2,4,5,6,7,8,9,10,11,12]]
+X_opt=X[:,[0,1,2,3,4,5,6,8,9,10,11,12]]
 regressor=sm.OLS(endog=y,exog=X_opt).fit()
 regressor.summary()
 
+X_opt=X[:,[0,1,2,4,5,6,8,9,10,11,12]]
+regressor=sm.OLS(endog=y,exog=X_opt).fit()
+regressor.summary()
+
+
 X_opt=X_opt[:,1:]
 X_train,X_test, y_train,y_test=train_test_split(X_opt,y,test_size=0.2)
+#X_train,X_test, y_train,y_test=train_test_split(X,y,test_size=0.2)
+
 regressor=LinearRegression()
 regressor.fit(X_train,y_train)
 y_pred=regressor.predict(X_test)
