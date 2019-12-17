@@ -46,8 +46,6 @@ Multiple Linear Regression.
     If the P-value is greater than the Significance level, we discard the feature. 
     If the P-value is smaller than the significance level, it indicates that the feature is strongly 
     correlated with the output variable. Hence, we include(keep/don't discard) the feature.
-    
-
 '''
 from sklearn.metrics import accuracy_score
 from statistics import mean
@@ -115,16 +113,21 @@ In the equation of Linear regression: y= B0+B1X1+B2X2+BnXn, the sklearn library 
 B0X0 but the statsmodels library doesn't make this assumption implicitly. 
 So we need to assign the value of 1 to X0 i.e we need to append a column of 1's. 
 '''
+X=X[:,1:]
 X=np.append(arr=np.ones((50,1)),values=X,axis=1)
 #Backward elimination starts here.
 X_opt=X
 regressor=sm.OLS(endog=y,exog=X_opt).fit()
 regressor.summary()
-X_opt=X[:,[0,1,2,3,4,5,7]]
+X_opt=X[:,[0,1,3,4,5]]
 regressor=sm.OLS(endog=y,exog=X_opt).fit()
 regressor.summary()
 
-X_opt=X[:,[0,1,2,3,4,5]]
+X_opt=X[:,[0,3,4]]
+regressor=sm.OLS(endog=y,exog=X_opt).fit()
+regressor.summary()
+
+X_opt=X[:,[0,3]]
 regressor=sm.OLS(endog=y,exog=X_opt).fit()
 regressor.summary()
 
