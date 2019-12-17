@@ -24,7 +24,7 @@ Created on Fri Nov 29 00:47:45 2019
 
 --->Where, x' and y' indicate the mean values of x and y respectively. 
 
---->After determining the values of B0 and B1, we just need to subsitute the input value of X in the equation.
+--->After determining the values of B0 and B1, we just need to substitute the input value of X in the equation.
 
 --->After making the predictions, we need to determine the error in our predictions. 
     for that, we use the r-squared method. 
