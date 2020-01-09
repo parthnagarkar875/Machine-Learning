@@ -63,7 +63,7 @@ y=df.iloc[:,4].values
 
 labelencoder = LabelEncoder()
 X[:, 3] = labelencoder.fit_transform(X[:, 3])
-onehotencoder = OneHotEncoder(categorical_features = [3])
+onehotencoder = OneHotEncoder(categories = [0,1,2])
 X = onehotencoder.fit_transform(X).toarray()
 
 X_train, X_test, y_train, y_test= train_test_split(X,y,test_size=0.2)
