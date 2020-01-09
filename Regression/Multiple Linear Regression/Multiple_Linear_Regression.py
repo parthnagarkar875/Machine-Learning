@@ -56,17 +56,42 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.compose import ColumnTransformer 
+import pandas as pd
 
-df=pd.read_csv('50_startups.csv')
-X=df.iloc[:,:-1].values
-y=df.iloc[:,4].values
+df1=pd.read_csv('50_startups.csv')
+df2=pd.get_dummies(df1['State'])
 
-labelencoder = LabelEncoder()
-X[:, 3] = labelencoder.fit_transform(X[:, 3])
-onehotencoder = OneHotEncoder(categories = [0,1,2])
-X = onehotencoder.fit_transform(X).toarray()
 
+result = pd.concat([df1,df2],axis=1)
+df=result.drop(['State'],axis=1)
+
+y=df.iloc[:,3].values
+df0=df.drop(['Profit'],axis=1)
+
+
+X=df0.iloc[:,:].values
+
+
+# =============================================================================
+# labelencoder = LabelEncoder()
+# X[:, 3] = labelencoder.fit_transform(X[:, 3])
+# 
+# ct = ColumnTransformer([("Name_Of_Your_Step", OneHotEncoder(),[0])], remainder="passthrough") 
+# ct.fit_transform(X).toarray()
+# 
+# =============================================================================
+
+
+
+# =============================================================================
+# onehotencoder = OneHotEncoder(categories = [3])
+# X = onehotencoder.fit_transform(X).toarray()
+# 
+# =============================================================================
 X_train, X_test, y_train, y_test= train_test_split(X,y,test_size=0.2)
+
+
 
 # =============================================================================
 # I have commented the feature scaling code and haven't executed it because in Linear 
