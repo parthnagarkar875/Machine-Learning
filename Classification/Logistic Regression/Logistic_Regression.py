@@ -22,9 +22,18 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 
-df=pd.read_csv('Social_Network_Ads.csv')
-X=df.iloc[:,[2,3]].values
-y=df.iloc[:,4].values
+df0=pd.read_csv('Social_Network_Ads.csv')
+
+df2=pd.get_dummies(df0['Gender'])
+
+result = pd.concat([df0,df2],axis=1)
+df=result.drop(['User ID','Gender'],axis=1)
+
+y=df.iloc[:,2].values
+df0=df.drop(['Purchased'],axis=1)
+
+
+X=df0.iloc[:,[0,1]].values
 
 
 

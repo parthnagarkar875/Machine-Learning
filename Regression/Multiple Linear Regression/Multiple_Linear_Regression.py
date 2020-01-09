@@ -73,22 +73,7 @@ df0=df.drop(['Profit'],axis=1)
 X=df0.iloc[:,:].values
 
 
-# =============================================================================
-# labelencoder = LabelEncoder()
-# X[:, 3] = labelencoder.fit_transform(X[:, 3])
-# 
-# ct = ColumnTransformer([("Name_Of_Your_Step", OneHotEncoder(),[0])], remainder="passthrough") 
-# ct.fit_transform(X).toarray()
-# 
-# =============================================================================
 
-
-
-# =============================================================================
-# onehotencoder = OneHotEncoder(categories = [3])
-# X = onehotencoder.fit_transform(X).toarray()
-# 
-# =============================================================================
 X_train, X_test, y_train, y_test= train_test_split(X,y,test_size=0.2)
 
 
