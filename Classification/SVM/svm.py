@@ -1,22 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Jan 13 17:48:15 2020
+Created on Mon Jan 13 19:15:33 2020
 
 @author: Parth
 """
 
 # =============================================================================
-# --> Algorithm of KNN:
-#     a) Set the number of neighbors.
-#     b) Calculate the distance between the existing points and the new data point.
-#     c) Sort the points based on distance. 
-#     d) Select the K nearest neighbors. 
-#     e) The category of the points nearest to the new data point will 
-#        get assigned to the new data point.
-# 
-# --> The distance is calculated based on various metrics like Euclidean, Manhattan. 
-# 
-# --> Formula for Euclidean distance is: square root((x2-x1)^2+(y2-y1)^2)
+# --> SVM aims at separating the classes by plotting a margin known as maximum length hyperplane.
+# --> The maximum length hyperplane is such that it considers the points that are of different category 
+#     but are closest to one another. 
+# --> It then chalks out the hyperplane such that the margin between the hyperplane and two points
+#     is maximum. 
+# --> The hyperplane is then used to classify the points into categories. 
 # 
 # =============================================================================
 
@@ -25,10 +20,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
-
+from sklearn.svm import SVC
 df0=pd.read_csv('Social_Network_Ads.csv')
 
 df2=pd.get_dummies(df0['Gender'])
@@ -40,7 +33,7 @@ y=df.iloc[:,2].values
 df0=df.drop(['Purchased'],axis=1)
 
 
-X=df0.iloc[:,[0,1]].values
+X=df0.iloc[:,:].values
 
 
 
@@ -51,11 +44,10 @@ sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 
-classifier=KNeighborsClassifier(n_neighbors=5, metric='minkowski',p=2)
+classifier=SVC(kernel='linear',random_state=0)
 classifier.fit(X_train,y_train)
 
 y_pred=classifier.predict(X_test)
-y_predSir = classifier.predict_proba(X_test)
 
 cm=confusion_matrix(y_test,y_pred)
 
@@ -70,7 +62,7 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('KNN (Training set)')
+plt.title('SVM (Training set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
@@ -91,22 +83,8 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('KNN (Test set)')
+plt.title('SVM (Test set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
