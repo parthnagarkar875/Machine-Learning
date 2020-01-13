@@ -4,8 +4,8 @@ Created on Tue Jan  7 20:29:51 2020
 
 @author: Parth
 """
-
 # =============================================================================
+# 
 # --> Types of Logistic Regression are:
 #     a) Binomial Logistic Regression.
 #     b) Multinomial Logistic Regression. (3+ categories without ordering)
@@ -17,8 +17,12 @@ Created on Tue Jan  7 20:29:51 2020
 #     c) Use the equation to convert the continuous value's linear line into a sigmoid curve
 #        predicting either 0 or 1. 
 #       
+# --> The above process requires three steps:
+#     a) y=B0+B1x
+#     b) p=1/(1+e^-y)
+#     c) ln(p/1-p)=B0+B1x
+#     
 # =============================================================================
-
 
 
 import numpy as np
