@@ -5,17 +5,21 @@ Created on Tue Jan  7 20:29:51 2020
 @author: Parth
 """
 
---> Types of Logistic Regression are:
-    a) Binomial Logistic Regression.
-    b) Multinomial Logistic Regression. (3+ categories without ordering)
-    c) Ordinal Logistic Regression. (3+ categories with ordering)
-    
---> In Logistic Regression, the following steps are involved:
-    a) Predict a continuous outcome of probabilities by using normal linear regression equation. 
-    b) Convert the outcome betweeen 0 and 1. 
-    c) Use the equation to convert the continuous value's linear line into a sigmoid curve
-       predicting either 0 or 1. 
-      
+# =============================================================================
+# --> Types of Logistic Regression are:
+#     a) Binomial Logistic Regression.
+#     b) Multinomial Logistic Regression. (3+ categories without ordering)
+#     c) Ordinal Logistic Regression. (3+ categories with ordering)
+#     
+# --> In Logistic Regression, the following steps are involved:
+#     a) Predict a continuous outcome of probabilities by using normal linear regression equation. 
+#     b) Convert the outcome betweeen 0 and 1. 
+#     c) Use the equation to convert the continuous value's linear line into a sigmoid curve
+#        predicting either 0 or 1. 
+#       
+# =============================================================================
+
+
 
 import numpy as np
 import matplotlib.pyplot as plt
