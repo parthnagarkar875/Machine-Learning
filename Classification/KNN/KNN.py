@@ -1,29 +1,24 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jan  7 20:29:51 2020
+Created on Mon Jan 13 17:48:15 2020
 
 @author: Parth
 """
-# =============================================================================
-# 
-# --> Types of Logistic Regression are:
-#     a) Binomial Logistic Regression.
-#     b) Multinomial Logistic Regression. (3+ categories without ordering)
-#     c) Ordinal Logistic Regression. (3+ categories with ordering)
-#     
-# --> In Logistic Regression, the following steps are involved:
-#     a) Predict a continuous outcome of probabilities by using normal linear regression equation. 
-#     b) Convert the outcome betweeen 0 and 1. 
-#     c) Use the equation to convert the continuous value's linear line into a sigmoid curve
-#        predicting either 0 or 1. 
-#       
-# --> The above process requires three steps:
-#     a) y=B0+B1x
-#     b) p=1/(1+e^-y)
-#     c) ln(p/1-p)=B0+B1x
-#     
-# =============================================================================
 
+# =============================================================================
+# --> Algorithm of KNN:
+#     a) Set the number of neighbors.
+#     b) Calculate the distance between the existing points and the new data point.
+#     c) Sort the points based on distance. 
+#     d) Select the K nearest neighbors. 
+#     e) The category of the points nearest to the new data point will 
+#        get assigned to the new data point.
+# 
+# --> The distance is calculated based on various metrics like Euclidean, Manhattan. 
+# 
+# --> Formula for Euclidean distance is: square root((x2-x1)^2+(y2-y1)^2)
+# 
+# =============================================================================
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -31,6 +26,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
 
 df0=pd.read_csv('Social_Network_Ads.csv')
@@ -44,7 +40,7 @@ y=df.iloc[:,2].values
 df0=df.drop(['Purchased'],axis=1)
 
 
-X=df0.iloc[:,:].values
+X=df0.iloc[:,[0,1]].values
 
 
 
@@ -54,9 +50,13 @@ X_train, X_test, y_train, y_test= train_test_split(X,y,test_size=0.2)
 sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
+# =============================================================================
+# sc_y = StandardScaler()
+# y_train = sc_y.fit_transform(y_train)
+# 
+# =============================================================================
 
-
-classifier=LogisticRegression(random_state=0)
+classifier=KNeighborsClassifier(n_neighbors=5, metric='minkowski',p=2)
 classifier.fit(X_train,y_train)
 
 y_pred=classifier.predict(X_test)
@@ -101,6 +101,7 @@ plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
 plt.show()
+
 
 
 
