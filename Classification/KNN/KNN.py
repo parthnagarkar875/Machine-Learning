@@ -40,7 +40,7 @@ y=df.iloc[:,2].values
 df0=df.drop(['Purchased'],axis=1)
 
 
-X=df0.iloc[:,[0,1]].values
+X=df0.iloc[:,:].values
 
 
 
