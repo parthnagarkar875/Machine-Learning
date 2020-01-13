@@ -6,13 +6,13 @@ Created on Mon Dec  2 11:59:24 2019
 """
 
 '''
-Random Forrest Regression.
---->Random Forrest Regression comes under a set of learning algorithms called as Ensemble Learning.
+Random Forest Regression.
+--->Random Forest Regression comes under a set of learning algorithms called as Ensemble Learning.
 
 --->Ensemble Learning is the process of taking multiple algorithms or the same algorithm multiple 
     times to generate something more powerful than the original algorithm. 
     
---->Steps in Random Forrest Regression are:
+--->Steps in Random Forest Regression are:
     1) Select any random K points from the dataset. 
     2) Create a Decision tree to predict the dependent variable y on those k data points. 
     3) Specify the number of decision trees to be constructed. 
