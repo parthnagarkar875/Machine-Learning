@@ -6,6 +6,9 @@ Created on Mon Jan 13 20:23:13 2020
 """
 
 
+-->https://medium.com/@rrfd/boosting-bagging-and-stacking-ensemble-methods-with-sklearn-and-mlens-a455c0c982de
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
