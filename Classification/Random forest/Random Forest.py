@@ -6,9 +6,22 @@ Created on Mon Jan 13 20:23:13 2020
 """
 
 
--->https://medium.com/@rrfd/boosting-bagging-and-stacking-ensemble-methods-with-sklearn-and-mlens-a455c0c982de
-
-
+# =============================================================================
+# -->https://medium.com/@rrfd/boosting-bagging-and-stacking-ensemble-methods-with-sklearn-and-mlens-a455c0c982de
+# 
+# -->https://analyticsindiamag.com/primer-ensemble-learning-bagging-boosting/
+# 
+# -->https://www.geeksforgeeks.org/stacking-in-machine-learning/
+# 
+# -->Bagging: This process divides the training data into sample sets and replaces the elements
+#    in the sample sets to equal the number of elements in the original training set. 
+#    Then using the feature randomness, it makes sure that the trees in ensemble model use distinct
+#    set of features to avoid being too correlated with one another. The outcome of all the trees 
+#    is then averaged to get the final prediction. 
+# =============================================================================
+    
+    
+    
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
