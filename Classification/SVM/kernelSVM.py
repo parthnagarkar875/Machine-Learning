@@ -5,6 +5,20 @@ Created on Wed Jan 15 15:27:26 2020
 @author: Parth
 """
 
+# =============================================================================
+# --> Kernels are used in SVM if the data cannot be linearly separated. The kernels simulate the 
+#     mapping of the data from 2D to higher planes in order to create a decision boundary and classify
+#     the datapoints by separation. The higher planes are remapped to the original lower plane.
+#     
+# --> Most commonly used kernels are: RBF, Gaussian and Polynomial kernels. We will be using RBF kernel 
+#     in this code. 
+# 
+# --> The formula for RBF kernel is: k=exp(||x-l||^2/(2s))
+#     Where: x= The current datapoint.
+#            l= The landmark(center of the graph). 
+#            s= Sigma; specifies the size of the decision boundary. 
+# 
+# =============================================================================
 
 import numpy as np
 import matplotlib.pyplot as plt
