@@ -28,6 +28,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
+from sklearn.metrics import recall_score
+from sklearn.metrics import f1_score
+from sklearn.metrics import precision_score
 
 df0=pd.read_csv('Social_Network_Ads.csv')
 
@@ -58,6 +61,16 @@ y_pred=classifier.predict(X_test)
 y_predSir = classifier.predict_proba(X_test)
 
 cm=confusion_matrix(y_test,y_pred)
+
+precision=precision_score(y_test,y_pred)
+recall=recall_score(y_test,y_pred)
+fscore=f1_score(y_test,y_pred)
+specificity=cm[0,0]/(cm[0,0]+cm[0,1])
+
+print('Precision: {}'.format(precision))
+print('Recall/Sensitivity: {}'.format(recall))
+print('F1 score: {}'.format(fscore))
+print('Specificity: {}'.format(specificity))
 
 from matplotlib.colors import ListedColormap
 X_set, y_set = X_train, y_train
