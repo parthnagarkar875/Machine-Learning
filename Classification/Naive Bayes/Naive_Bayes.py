@@ -13,8 +13,9 @@ Created on Wed Jan 15 19:44:00 2020
 # 
 # --> The formula of Naive Bayes theorem is: P(A/B)=(P(B/A)*P(A))/P(B)
 # 
-# --> 
+# --> Compare the probability of one class with the probability of other classes. 
 # =============================================================================
+
 
 import numpy as np
 import matplotlib.pyplot as plt
