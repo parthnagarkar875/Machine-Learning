@@ -6,16 +6,17 @@ Created on Sat Jan 18 14:51:35 2020
 """
 
 
---> Used for clustering the data points based on their traits into different categories. 
-
---> Steps are:
-    a) Choose K number of clusters.
-    b) Randomly initialize K cluster centroids.
-    c) Assign each datapoint to the closest centroid. 
-    d) Compute the mean of the datapoints of different clusters and plot the new centroid.
-    e) Reassign each datapoint to the closest centroid based and do this till no reassignment takes place. 
-    
---> 
+# =============================================================================
+# --> Used for clustering the data points based on their traits into different categories. 
+# 
+# --> Steps are:
+#     a) Choose K number of clusters.
+#     b) Randomly initialize K cluster centroids.
+#     c) Assign each datapoint to the closest centroid. 
+#     d) Compute the mean of the datapoints of different clusters and plot the new centroid.
+#     e) Reassign each datapoint to the closest centroid based and do this till no reassignment takes place. 
+# 
+# =============================================================================
 
 
 import matplotlib.pyplot as plt
