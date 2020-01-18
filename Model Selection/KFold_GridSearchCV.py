@@ -5,6 +5,7 @@ Created on Sat Jan 18 21:43:02 2020
 @author: Parth
 """
 
+
 # =============================================================================
 # --> https://medium.com/datadriveninvestor/k-fold-cross-validation-6b8518070833
 # 
@@ -25,6 +26,8 @@ from sklearn.metrics import recall_score
 from sklearn.metrics import f1_score
 from sklearn.metrics import precision_score
 from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import GridSearchCV
+
 
 df0=pd.read_csv('Social_Network_Ads.csv')
 
@@ -69,6 +72,20 @@ print('Specificity: {}'.format(specificity))
 accuracies=cross_val_score(estimator=classifier, X=X_train, y=y_train,cv=10)
 accuracies.mean()
 accuracies.std()
+
+
+parameters=[{'C':[1,10,100,1000],'kernel':['linear']},
+            {'C':[1,10,100,1000],'kernel':['rbf'],'gamma':[0.1,0.2,0.3,0.4,0.5,0.6,0.7]}]
+
+grid_search=GridSearchCV(estimator=classifier,
+                         param_grid=parameters,
+                         scoring='accuracy',
+                         cv=10,
+                         n_jobs=-1)
+
+grid_search=grid_search.fit(X_train,y_train)
+best_accuracy=grid_search.best_score_
+best_parameters=grid_search.best_params_
 
 from matplotlib.colors import ListedColormap
 X_set, y_set = X_train, y_train
