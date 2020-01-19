@@ -48,6 +48,7 @@ regressor.fit(X,y)
 
 y_pred=regressor.predict(np.array([[6.5]]))
 
+
 plt.scatter(X, y, color = 'red')
 plt.plot(X, regressor.predict(X), color = 'blue')
 plt.title('Salary vs Experience (Test set)')
