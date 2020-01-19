@@ -72,7 +72,6 @@ print('Precision: {}'.format(precision))
 print('Recall/Sensitivity: {}'.format(recall))
 print('F1 score: {}'.format(fscore))
 print('Specificity: {}'.format(specificity))
-
 accuracies=cross_val_score(estimator=classifier, X=X_train, y=y_train,cv=10)
 print("Mean of accuracies:",accuracies.mean())
 print("STD of accuracies:",accuracies.std())
