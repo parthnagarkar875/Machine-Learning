@@ -72,6 +72,12 @@ print('Recall/Sensitivity: {}'.format(recall))
 print('F1 score: {}'.format(fscore))
 print('Specificity: {}'.format(specificity))
 
+from sklearn.model_selection import cross_val_score
+accuracies=cross_val_score(estimator=classifier, X=X_train, y=y_train,cv=10)
+print("Mean of accuracies:",accuracies.mean())
+print("STD of accuracies:",accuracies.std())
+
+
 from matplotlib.colors import ListedColormap
 X_set, y_set = X_train, y_train
 X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
