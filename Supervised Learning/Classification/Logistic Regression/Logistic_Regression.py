@@ -35,6 +35,8 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import recall_score
 from sklearn.metrics import f1_score
 from sklearn.metrics import precision_score
+from sklearn.model_selection import cross_val_score
+
 df0=pd.read_csv('Social_Network_Ads.csv')
 
 df2=pd.get_dummies(df0['Gender'])
@@ -46,7 +48,7 @@ y=df.iloc[:,2].values
 df0=df.drop(['Purchased'],axis=1)
 
 
-X=df0.iloc[:,:].values
+X=df0.iloc[:,[0,1]].values
 
 
 
@@ -75,6 +77,13 @@ print('Precision: {}'.format(precision))
 print('Recall/Sensitivity: {}'.format(recall))
 print('F1 score: {}'.format(fscore))
 print('Specificity: {}'.format(specificity))
+
+#K-fold cross validation part
+accuracies=cross_val_score(estimator=classifier, X=X_train, y=y_train,cv=10)
+print("Mean of accuracies:",accuracies.mean())
+print("STD of accuracies:",accuracies.std())
+
+
 
 from matplotlib.colors import ListedColormap
 X_set, y_set = X_train, y_train
