@@ -24,7 +24,7 @@ X=df.iloc[:,0:13].values
 y=df.iloc[:,13].values
 
 
-X_train, X_test, y_train, y_test= train_test_split(X,y,test_size=0.2)
+X_train, X_test, y_train, y_test= train_test_split(X,y,test_size=0.2,random_state=0)
 
 # =============================================================================
 # Whenever we have to use dimensionality reduction, it is necessary to scale the features. 
@@ -37,7 +37,6 @@ X_test = sc_X.transform(X_test)
 # =============================================================================
 # Applying PCA
 # =============================================================================
-
 
 from sklearn.decomposition import PCA
 pca=PCA(n_components=2)
