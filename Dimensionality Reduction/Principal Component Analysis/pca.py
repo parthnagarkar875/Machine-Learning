@@ -54,15 +54,6 @@ y_predSir = classifier.predict_proba(X_test)
 
 cm=confusion_matrix(y_test,y_pred)
 
-precision=precision_score(y_test,y_pred)
-recall=recall_score(y_test,y_pred)
-fscore=f1_score(y_test,y_pred)
-specificity=cm[0,0]/(cm[0,0]+cm[0,1])
-
-print('Precision: {}'.format(precision))
-print('Recall/Sensitivity: {}'.format(recall))
-print('F1 score: {}'.format(fscore))
-print('Specificity: {}'.format(specificity))
 
 #K-fold cross validation part
 accuracies=cross_val_score(estimator=classifier, X=X_train, y=y_train,cv=10)
@@ -76,15 +67,15 @@ X_set, y_set = X_train, y_train
 X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
                      np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 1].max() + 1, step = 0.01))
 plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
-             alpha = 0.75, cmap = ListedColormap(('red', 'green')))
+             alpha = 0.75, cmap = ListedColormap(('red', 'green','blue')))
 plt.xlim(X1.min(), X1.max())
 plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
-                c = ListedColormap(('red', 'green'))(i), label = j)
+                c = ListedColormap(('red', 'green','blue'))(i), label = j)
 plt.title('Logistic Regression (Training set)')
-plt.xlabel('Age')
-plt.ylabel('Estimated Salary')
+plt.xlabel('Label 1')
+plt.ylabel('Label 2')
 plt.legend()
 plt.show()
 
@@ -97,14 +88,14 @@ X_set, y_set = X_test, y_test
 X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
                      np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 1].max() + 1, step = 0.01))
 plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
-             alpha = 0.75, cmap = ListedColormap(('red', 'green')))
+             alpha = 0.75, cmap = ListedColormap(('red', 'green','blue')))
 plt.xlim(X1.min(), X1.max())
 plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
-                c = ListedColormap(('red', 'green'))(i), label = j)
+                c = ListedColormap(('red', 'green','blue'))(i), label = j)
 plt.title('Logistic Regression (Test set)')
-plt.xlabel('Age')
-plt.ylabel('Estimated Salary')
+plt.xlabel('Label 1')
+plt.ylabel('Label 2')
 plt.legend()
 plt.show()
